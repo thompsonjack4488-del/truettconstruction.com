@@ -229,6 +229,7 @@
       font-size: 2.6rem; line-height: 1; color: var(--gold); margin-bottom: 6px;
     }
     .hero-stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; line-height: 1.4; }
+    .hero-markets { font-size: clamp(1.1rem, 2.2vw, 2.6rem) !important; letter-spacing: 0.04em; }
     .hero-badge {
       background: var(--surface2); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 20px 24px;
@@ -662,19 +663,19 @@
     <div class="hero-right">
       <div class="hero-stats-grid">
         <div class="hero-stat reveal reveal-delay-1">
-          <div class="hero-stat-num" data-count="25">0</div>
+          <div class="hero-stat-num hero-count" data-target="25" data-suffix="+">0+</div>
           <div class="hero-stat-label">Years of industry<br/>excellence</div>
         </div>
         <div class="hero-stat reveal reveal-delay-2">
-          <div class="hero-stat-num" data-count="2500" data-suffix="+">0</div>
+          <div class="hero-stat-num hero-count" data-target="2500" data-suffix="+">2500+</div>
           <div class="hero-stat-label">Customers<br/>helped</div>
         </div>
         <div class="hero-stat reveal reveal-delay-3">
-          <div class="hero-stat-num" data-count="8">0</div>
+          <div class="hero-stat-num hero-count" data-target="8">8</div>
           <div class="hero-stat-label">Specialized<br/>divisions in 3 states</div>
         </div>
         <div class="hero-stat reveal reveal-delay-4">
-          <div class="hero-stat-num">VA · NC · FL</div>
+          <div class="hero-stat-num hero-markets">VA · NC · FL</div>
           <div class="hero-stat-label">Active<br/>markets</div>
         </div>
       </div>
@@ -1020,7 +1021,7 @@
       </div>
       <div class="cta-band-actions">
         <a href="#contact" class="btn btn-gold btn-lg">Start a Project</a>
-        <a href="tel:+15403381511" class="btn btn-outline btn-lg">Call Us Directly</a>
+        <a href="tel:+17033391518" class="btn btn-outline btn-lg">Call Us Directly</a>
       </div>
     </div>
   </div>
@@ -1050,7 +1051,7 @@
             </div>
             <div class="contact-item-text">
               <p>Phone</p>
-              <span>(540) 338-1511</span>
+              <span>(703) 339-1518</span>
             </div>
           </div>
           <div class="contact-item reveal reveal-delay-2">
@@ -1162,7 +1163,7 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="tel:+15403381511">(540) 338-1511</a></li>
+          <li><a href="tel:+17033391518">(703) 339-1518</a></li>
           <li><a href="mailto:info@truettconstruction.com">info@truettconstruction.com</a></li>
           <li><a href="#">Marshall, Virginia HQ</a></li>
           <li><a href="#">Jacksonville Beach, FL</a></li>
@@ -1215,12 +1216,12 @@
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   // ── ANIMATED COUNTERS ──────────────────────────────
-  function animateCount(el, target, duration = 1600) {
+  function animateCount(el, target, suffix = '', duration = 1600) {
     let start = 0;
     const step = target / (duration / 16);
     const timer = setInterval(() => {
       start = Math.min(start + step, target);
-      el.textContent = Math.round(start);
+      el.textContent = Math.round(start) + suffix;
       if (start >= target) clearInterval(timer);
     }, 16);
   }
@@ -1229,13 +1230,22 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const el = entry.target;
-        animateCount(el, parseInt(el.dataset.target));
+        const suffix = el.dataset.suffix || '';
+        animateCount(el, parseInt(el.dataset.target), suffix);
         countObserver.unobserve(el);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.3 });
 
+  // Numbers section counters
   document.querySelectorAll('.count-num').forEach(el => countObserver.observe(el));
+
+  // Hero stat counters — animate on page load with short delay
+  document.querySelectorAll('.hero-count').forEach((el, i) => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    setTimeout(() => animateCount(el, target, suffix, 1800), 600 + i * 150);
+  });
 
   // ── FORM SUBMIT HANDLER ────────────────────────────
   function handleSubmit(e) {
