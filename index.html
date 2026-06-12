@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Truett Construction — Built to Last</title>
+  <meta name="description" content="Truett Construction is the cornerstone of Thompson Capital Group — a vertically integrated construction and infrastructure company serving the DMV and beyond." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #09090b;
+      --surface:   #111113;
+      --surface2:  #18181b;
+      --border:    #27272a;
+      --text:      #fafafa;
+      --muted:     #a1a1aa;
+      --dim:       #52525b;
+      --gold:      #c9963e;
+      --gold-lt:   #e8b86d;
+      --gold-dk:   #8b6316;
+      --radius:    12px;
+      --nav-h:     72px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── SCROLLBAR ────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+    /* ─── UTILITIES ────────────────────────────────────── */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+    .section { padding: 120px 0; }
+    .section-sm { padding: 80px 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+    }
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.1; }
+    h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+    .text-muted { color: var(--muted); }
+    .gold { color: var(--gold); }
+
+    /* ─── FADE-IN OBSERVER ─────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── NAVIGATION ───────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      transition: background var(--transition), backdrop-filter var(--transition), border-color var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(9,9,11,0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-color: var(--border);
+    }
+    .nav-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px; cursor: pointer;
+    }
+    .nav-logo-mark {
+      width: 38px; height: 38px; position: relative;
+    }
+    .nav-logo-mark svg { width: 100%; height: 100%; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-text span:first-child {
+      font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: 0.02em;
+    }
+    .nav-logo-text span:last-child {
+      font-size: 9px; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-top: 2px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      transition: color var(--transition); letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.04em; padding: 10px 22px; border-radius: 8px;
+      cursor: pointer; transition: all var(--transition); border: none;
+    }
+    .btn-ghost {
+      background: transparent; color: var(--muted); border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--dim); }
+    .btn-gold {
+      background: var(--gold); color: #09090b;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--text); border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: var(--nav-h);
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    /* Geometric grid lines */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,150,62,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,150,62,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    /* Radial glow */
+    .hero-glow {
+      position: absolute; top: -20%; right: -10%;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(201,150,62,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute; bottom: -30%; left: -5%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,150,62,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    /* Diagonal accent bar */
+    .hero-bar {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 42%;
+      background: linear-gradient(135deg, transparent 0%, rgba(201,150,62,0.03) 100%);
+      border-left: 1px solid var(--border);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .hero-left {}
+    .hero-super {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,150,62,0.08); border: 1px solid rgba(201,150,62,0.2);
+      padding: 6px 14px; border-radius: 99px; margin-bottom: 32px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-super::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+    h1.hero-title {
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      line-height: 1.02; letter-spacing: -0.01em;
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--gold);
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 17px; line-height: 1.7; color: var(--muted);
+      max-width: 480px; margin-bottom: 44px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .btn-lg { padding: 14px 30px; font-size: 14px; border-radius: 10px; }
+    .hero-right {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    /* Stats cards on right side */
+    .hero-stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .hero-stat {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .hero-stat:hover { border-color: rgba(201,150,62,0.3); transform: translateY(-2px); }
+    .hero-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem; line-height: 1; color: var(--gold); margin-bottom: 6px;
+    }
+    .hero-stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; line-height: 1.4; }
+    .hero-badge {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hero-badge-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(201,150,62,0.1); border: 1px solid rgba(201,150,62,0.2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hero-badge-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+    .hero-badge-text p { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .hero-badge-text span { font-size: 12px; color: var(--muted); }
+
+    /* ─── TICKER BAR ───────────────────────────────────── */
+    .ticker-wrap {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--surface); overflow: hidden; white-space: nowrap;
+      padding: 16px 0;
+    }
+    .ticker-track {
+      display: inline-flex; animation: ticker 28s linear infinite;
+    }
+    .ticker-item {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 0 40px; font-size: 13px; font-weight: 500; color: var(--muted);
+    }
+    .ticker-item strong { color: var(--text); }
+    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── ABOUT ────────────────────────────────────────── */
+    #about { position: relative; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;
+    }
+    .about-left {}
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-inner {
+      aspect-ratio: 4/5; border-radius: 16px; overflow: hidden;
+      background: var(--surface2); border: 1px solid var(--border);
+      position: relative;
+    }
+    /* Placeholder image with architectural lines */
+    .about-img-placeholder {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #111113 0%, #1a1a1f 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-img-placeholder svg { width: 80px; height: 80px; opacity: 0.15; }
+    .about-corner {
+      position: absolute; width: 80px; height: 80px; border-color: var(--gold);
+      border-style: solid; opacity: 0.3;
+    }
+    .about-corner-tl { top: -10px; left: -10px; border-width: 2px 0 0 2px; }
+    .about-corner-br { bottom: -10px; right: -10px; border-width: 0 2px 2px 0; }
+    .about-stat-float {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 24px;
+      backdrop-filter: blur(10px);
+    }
+    .about-stat-float .num {
+      font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--gold); line-height: 1;
+    }
+    .about-stat-float .label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .about-right {}
+    .about-body { font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 32px; }
+    .about-body p + p { margin-top: 16px; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+    .about-tag {
+      padding: 6px 14px; border-radius: 99px; border: 1px solid var(--border);
+      font-size: 12px; color: var(--muted); transition: all var(--transition);
+    }
+    .about-tag:hover { border-color: var(--gold); color: var(--gold); }
+    .about-divider { height: 1px; background: var(--border); margin: 40px 0; }
+    .founder-row { display: flex; align-items: center; gap: 16px; }
+    .founder-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif; font-size: 20px; color: #09090b; flex-shrink: 0;
+    }
+    .founder-info p { font-size: 15px; font-weight: 600; }
+    .founder-info span { font-size: 12px; color: var(--muted); }
+
+    /* ─── DIVISIONS ────────────────────────────────────── */
+    #divisions { background: var(--surface); }
+    .divisions-header { text-align: center; max-width: 640px; margin: 0 auto 72px; }
+    .divisions-header p { font-size: 17px; color: var(--muted); line-height: 1.7; margin-top: 20px; }
+    .divisions-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .division-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 28px;
+      transition: all var(--transition); cursor: default;
+      position: relative; overflow: hidden;
+    }
+    .division-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,150,62,0.04) 0%, transparent 60%);
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .division-card:hover { border-color: rgba(201,150,62,0.35); transform: translateY(-4px); }
+    .division-card:hover::before { opacity: 1; }
+    .division-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(201,150,62,0.08); border: 1px solid rgba(201,150,62,0.15);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+      transition: background var(--transition);
+    }
+    .division-card:hover .division-icon { background: rgba(201,150,62,0.15); }
+    .division-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.6; }
+    .division-name {
+      font-family: 'DM Serif Display', serif; font-size: 1.15rem; margin-bottom: 10px;
+    }
+    .division-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .division-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: var(--gold);
+      margin-top: 20px; opacity: 0; transform: translateX(-4px);
+      transition: all var(--transition);
+    }
+    .division-card:hover .division-link { opacity: 1; transform: translateX(0); }
+    .division-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* ─── NUMBERS ──────────────────────────────────────── */
+    #numbers { position: relative; overflow: hidden; }
+    .numbers-bg-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(201,150,62,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .numbers-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+    }
+    .number-item {
+      padding: 56px 40px; border-right: 1px solid var(--border);
+      text-align: center; position: relative;
+      transition: background var(--transition);
+    }
+    .number-item:last-child { border-right: none; }
+    .number-item:hover { background: var(--surface2); }
+    .number-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4rem);
+      color: var(--text); line-height: 1; margin-bottom: 12px;
+    }
+    .number-val .suffix { color: var(--gold); }
+    .number-label { font-size: 13px; color: var(--muted); letter-spacing: 0.04em; line-height: 1.5; }
+
+    /* ─── WHY TRUETT ───────────────────────────────────── */
+    #why { background: var(--surface); }
+    .why-header { text-align: center; max-width: 600px; margin: 0 auto 72px; }
+    .why-header p { font-size: 17px; color: var(--muted); line-height: 1.7; margin-top: 20px; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    }
+    .why-card {
+      padding: 40px 36px; border-radius: 16px;
+      border: 1px solid var(--border); background: var(--bg);
+      transition: all var(--transition);
+    }
+    .why-card:hover { border-color: rgba(201,150,62,0.3); transform: translateY(-3px); }
+    .why-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem; color: rgba(201,150,62,0.15);
+      line-height: 1; margin-bottom: 24px;
+    }
+    .why-title { font-size: 1.2rem; font-family: 'DM Serif Display', serif; margin-bottom: 14px; }
+    .why-body { font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+    /* ─── SERVICE AREA ─────────────────────────────────── */
+    #coverage { }
+    .coverage-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .coverage-left {}
+    .coverage-body { font-size: 16px; color: var(--muted); line-height: 1.8; margin: 24px 0 40px; }
+    .coverage-locations {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .location-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 22px; border: 1px solid var(--border);
+      border-radius: 12px; transition: all var(--transition);
+    }
+    .location-item:hover { border-color: rgba(201,150,62,0.3); background: var(--surface2); }
+    .location-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--gold); flex-shrink: 0;
+    }
+    .location-item p { font-size: 14px; font-weight: 500; }
+    .location-item span { font-size: 12px; color: var(--muted); }
+    .coverage-right {}
+    /* Stylized map */
+    .map-visual {
+      aspect-ratio: 4/3; border-radius: 16px;
+      background: var(--surface2); border: 1px solid var(--border);
+      position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .map-visual svg { width: 90%; height: 90%; opacity: 0.7; }
+
+    /* ─── CTA BAND ─────────────────────────────────────── */
+    #cta-band {
+      background: linear-gradient(135deg, #111113 0%, #1a1710 100%);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .cta-band-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 40px;
+      flex-wrap: wrap;
+    }
+    .cta-band-text h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 12px; }
+    .cta-band-text p { font-size: 16px; color: var(--muted); max-width: 500px; line-height: 1.7; }
+    .cta-band-actions { display: flex; gap: 14px; flex-shrink: 0; flex-wrap: wrap; }
+
+    /* ─── CONTACT ──────────────────────────────────────── */
+    #contact {}
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .contact-left {}
+    .contact-intro { font-size: 16px; color: var(--muted); line-height: 1.8; margin: 20px 0 44px; }
+    .contact-details { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .contact-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--surface2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .contact-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+    .contact-item-text p { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .contact-item-text span { font-size: 13px; color: var(--muted); }
+    /* Form */
+    .contact-form {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 44px 40px;
+    }
+    .form-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 16px;
+      font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text);
+      outline: none; transition: border-color var(--transition);
+      appearance: none; width: 100%;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: rgba(201,150,62,0.5); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--dim); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit { width: 100%; justify-content: center; margin-top: 8px; }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 72px 0 40px;
+    }
+    .footer-main {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 64px;
+    }
+    .footer-brand p { font-size: 14px; color: var(--muted); line-height: 1.75; margin: 20px 0 28px; max-width: 280px; }
+    .footer-social { display: flex; gap: 12px; }
+    .social-btn {
+      width: 38px; height: 38px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition); cursor: pointer;
+    }
+    .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .social-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; color: var(--text); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a { font-size: 13px; color: var(--muted); transition: color var(--transition); }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-bottom p { font-size: 12px; color: var(--dim); }
+    .footer-bottom a { color: var(--muted); transition: color var(--transition); }
+    .footer-bottom a:hover { color: var(--text); }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 99px;
+      border: 1px solid var(--border); background: var(--bg);
+      font-size: 11px; color: var(--muted); letter-spacing: 0.06em;
+    }
+    .footer-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+
+    /* ─── MOBILE NAV MENU ──────────────────────────────── */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 99; background: rgba(9,9,11,0.97);
+      backdrop-filter: blur(20px); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 32px;
+      opacity: 0; pointer-events: none; transition: opacity var(--transition);
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a {
+      font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--muted);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--text); }
+    .mobile-menu-close {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none; cursor: pointer; padding: 8px; color: var(--muted);
+    }
+    .mobile-menu-close svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* ─── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .divisions-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 860px) {
+      .hero-content { grid-template-columns: 1fr; gap: 60px; }
+      .hero-right { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 60px; }
+      .about-left { order: 2; }
+      .coverage-grid { grid-template-columns: 1fr; }
+      .coverage-right { display: none; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      .number-item:nth-child(2) { border-right: none; }
+      .number-item:nth-child(1), .number-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-cta .btn-ghost { display: none; }
+      .nav-mobile-toggle { display: block; color: var(--muted); }
+      .nav-mobile-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr; }
+      .cta-band-inner { flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .container { padding: 0 20px; }
+      .section { padding: 80px 0; }
+      .divisions-grid { grid-template-columns: 1fr; }
+      .hero-super { font-size: 10px; }
+      h1.hero-title { font-size: 2.6rem; }
+      .numbers-grid { grid-template-columns: 1fr; }
+      .number-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .number-item:last-child { border-bottom: none; }
+      .contact-form { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">
+        <!-- T mark SVG -->
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="38" height="38" rx="8" fill="rgba(201,150,62,0.08)" stroke="rgba(201,150,62,0.3)" stroke-width="1"/>
+          <path d="M8 10h22M19 10v18" stroke="#C9963E" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        <span>Truett Construction</span>
+        <span>Thompson Capital Group</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#divisions">Divisions</a></li>
+      <li><a href="#why">Why Truett</a></li>
+      <li><a href="#coverage">Coverage</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#divisions" class="btn btn-ghost">Explore Divisions</a>
+      <a href="#contact" class="btn btn-gold">Start a Project</a>
+      <button class="nav-mobile-toggle" id="menuToggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="menuClose">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#divisions" class="mobile-link">Divisions</a>
+  <a href="#why" class="mobile-link">Why Truett</a>
+  <a href="#coverage" class="mobile-link">Coverage</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<!-- ═══════════════════ HERO ═══════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-bar"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-super">Thompson Capital Group</div>
+      <h1 class="hero-title">
+        We Don't Just Build<br />
+        Structures.<br />
+        We Build <em>Legacies.</em>
+      </h1>
+      <p class="hero-sub">
+        Truett Construction is the vertically integrated engine behind a new era of construction and infrastructure in Virginia, North Carolina, and Florida — built on integrity, powered by eight specialized divisions.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-gold btn-lg">Start Your Project</a>
+        <a href="#divisions" class="btn btn-outline btn-lg">View All Divisions</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stats-grid">
+        <div class="hero-stat reveal reveal-delay-1">
+          <div class="hero-stat-num" data-count="25">0</div>
+          <div class="hero-stat-label">Years of industry<br/>excellence</div>
+        </div>
+        <div class="hero-stat reveal reveal-delay-2">
+          <div class="hero-stat-num" data-count="2500" data-suffix="+">0</div>
+          <div class="hero-stat-label">Customers<br/>helped</div>
+        </div>
+        <div class="hero-stat reveal reveal-delay-3">
+          <div class="hero-stat-num" data-count="8">0</div>
+          <div class="hero-stat-label">Specialized<br/>divisions</div>
+        </div>
+        <div class="hero-stat reveal reveal-delay-4">
+          <div class="hero-stat-num">3</div>
+          <div class="hero-stat-label">State market<br/>presence</div>
+        </div>
+      </div>
+      <div class="hero-badge reveal">
+        <div class="hero-badge-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="hero-badge-text">
+          <p>Vertically Integrated Operations</p>
+          <span>From site work to roofing — under one roof</span>
+        </div>
+      </div>
+      <div class="hero-badge reveal">
+        <div class="hero-badge-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="hero-badge-text">
+          <p>Headquartered in Marshall, Virginia</p>
+          <span>Serving the full DMV region + expansion markets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TICKER ════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Roofing</strong> — Residential & Commercial</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Civil</strong> — Infrastructure & Site Development</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett General</strong> — Full-Service General Contracting</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Waterproofing</strong> — Commercial Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Land & Property</strong> — Development Services</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Demolition</strong> — Safe & Responsible</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Municipal Waste</strong> — Waste Management</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Trucking</strong> — Heavy Hauling & Logistics</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Roofing</strong> — Residential & Commercial</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Civil</strong> — Infrastructure & Site Development</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett General</strong> — Full-Service General Contracting</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Waterproofing</strong> — Commercial Solutions</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Land & Property</strong> — Development Services</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Demolition</strong> — Safe & Responsible</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Municipal Waste</strong> — Waste Management</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> <strong>Truett Trucking</strong> — Heavy Hauling & Logistics</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ ABOUT ════════════════════════ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="about-img-wrap">
+          <div class="about-img-inner">
+            <div class="about-img-placeholder">
+              <!-- Blueprint / architectural icon -->
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="20" width="100" height="80" rx="4" stroke="#C9963E" stroke-width="1.5" fill="none"/>
+                <line x1="10" y1="40" x2="110" y2="40" stroke="#C9963E" stroke-width="1" opacity="0.4"/>
+                <line x1="10" y1="60" x2="110" y2="60" stroke="#C9963E" stroke-width="1" opacity="0.4"/>
+                <line x1="10" y1="80" x2="110" y2="80" stroke="#C9963E" stroke-width="1" opacity="0.4"/>
+                <line x1="35" y1="20" x2="35" y2="100" stroke="#C9963E" stroke-width="1" opacity="0.4"/>
+                <line x1="60" y1="20" x2="60" y2="100" stroke="#C9963E" stroke-width="1" opacity="0.4"/>
+                <line x1="85" y1="20" x2="85" y2="100" stroke="#C9963E" stroke-width="1" opacity="0.4"/>
+                <!-- Building outline -->
+                <path d="M25 95V55l20-15 20 15V95" stroke="#C9963E" stroke-width="2" fill="none"/>
+                <rect x="38" y="75" width="14" height="20" stroke="#C9963E" stroke-width="1.5" fill="none"/>
+                <path d="M65 95V65h30v30" stroke="#C9963E" stroke-width="2" fill="none"/>
+                <line x1="65" y1="78" x2="95" y2="78" stroke="#C9963E" stroke-width="1" opacity="0.5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="about-corner about-corner-tl"></div>
+          <div class="about-corner about-corner-br"></div>
+          <div class="about-stat-float">
+            <div class="num">25+</div>
+            <div class="label">Years in Northern<br/>Virginia's Market</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="eyebrow reveal">Our Foundation</div>
+        <h2 class="reveal">The Cornerstone of Thompson Capital Group</h2>
+        <div class="about-body reveal">
+          <p>At Truett Construction, we build more than structures — we build legacies. Founded by Jack Thompson with over 25 years of hands-on experience across Northern Virginia's demanding market, we deliver full-scale general contracting excellence with the same integrity and customer-first focus that made Truett Roofing the trusted name it is today.</p>
+          <p>As the operational engine of the Thompson Capital Group family, we manage projects from concept to completion — with unmatched coordination, in-house expertise, and accountability at every phase.</p>
+        </div>
+        <div class="about-tags reveal">
+          <span class="about-tag">General Contracting</span>
+          <span class="about-tag">Infrastructure</span>
+          <span class="about-tag">Site Development</span>
+          <span class="about-tag">Roofing</span>
+          <span class="about-tag">Demolition</span>
+          <span class="about-tag">Logistics</span>
+        </div>
+        <div class="about-divider reveal"></div>
+        <div class="founder-row reveal">
+          <div class="founder-avatar">JT</div>
+          <div class="founder-info">
+            <p>Jack Thompson</p>
+            <span>Founder & CEO, Thompson Capital Group</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ DIVISIONS ════════════════════ -->
+<section id="divisions" class="section">
+  <div class="container">
+    <div class="divisions-header reveal">
+      <div class="eyebrow" style="justify-content:center; margin-left:auto; margin-right:auto;">Our Portfolio</div>
+      <h2>Eight Divisions.<br />One Standard of Excellence.</h2>
+      <p>Every Truett division operates with the same founding principles — uncompromising quality, proven expertise, and client-first accountability.</p>
+    </div>
+    <div class="divisions-grid">
+
+      <div class="division-card reveal">
+        <div class="division-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="division-name">Truett Roofing</div>
+        <div class="division-desc">Residential and commercial roofing across Virginia, North Carolina, and Florida. Our flagship division, trusted by 650+ homeowners and businesses.</div>
+        <span class="division-link">Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+
+      <div class="division-card reveal reveal-delay-1">
+        <div class="division-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 22h20"/><path d="M6 18V7l6-5 6 5v11"/><path d="M12 18v-6"/><path d="M8 18v-4"/><path d="M16 18v-4"/></svg>
+        </div>
+        <div class="division-name">Truett Civil</div>
+        <div class="division-desc">Site development, infrastructure, and civil construction. We handle the groundwork that makes everything else possible — from earthwork to utilities.</div>
+        <span class="division-link">Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+
+      <div class="division-card reveal reveal-delay-2">
+        <div class="division-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        </div>
+        <div class="division-name">Truett General</div>
+        <div class="division-desc">Full-service general contracting for new construction, renovations, and additions. Concept to completion, with tight timelines and zero corners cut.</div>
+        <span class="division-link">Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+
+      <div class="division-card reveal reveal-delay-3">
+        <div class="division-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="division-name">Truett Waterproofing</div>
+        <div class="division-desc">Commercial roofing and advanced waterproofing solutions. Protecting your investment with industry-leading materials and meticulous installation.</div>
+        <span class="division-link">Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+
+      <div class="division-card reveal">
+        <div class="division-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <div class="division-name">Truett Land & Property</div>
+        <div class="division-desc">Property management, site preparation, and land development. We turn raw land into ready-to-build opportunities with precision and regulatory expertise.</div>
+        <span class="division-link">Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+
+      <div class="division-card reveal reveal-delay-1">
+        <div class="division-icon">
+          <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        </div>
+        <div class="division-name">Truett Demolition</div>
+        <div class="division-desc">Safe, efficient, and environmentally responsible demolition services. We clear the way for what comes next — with precision, compliance, and minimal disruption.</div>
+        <span class="division-link">Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+
+      <div class="division-card reveal reveal-delay-2">
+        <div class="division-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="division-name">Truett Municipal Waste</div>
+        <div class="division-desc">Waste management and recycling solutions for municipal and commercial clients. Responsible, reliable, and scalable to the demands of any project size.</div>
+        <span class="division-link">Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+
+      <div class="division-card reveal reveal-delay-3">
+        <div class="division-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="division-name">Truett Trucking & Logistics</div>
+        <div class="division-desc">Heavy hauling, material transport, and supply chain support. Our fleet keeps every project moving — on schedule, on budget, and on-site.</div>
+        <span class="division-link">Learn More <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ NUMBERS ══════════════════════ -->
+<section id="numbers" class="section">
+  <div class="container">
+    <div class="numbers-bg-glow"></div>
+    <div class="numbers-grid reveal">
+      <div class="number-item">
+        <div class="number-val"><span class="count-num" data-target="25">0</span><span class="suffix">+</span></div>
+        <div class="number-label">Years of Experience<br/>in Northern Virginia</div>
+      </div>
+      <div class="number-item">
+        <div class="number-val"><span class="count-num" data-target="2500">0</span><span class="suffix">+</span></div>
+        <div class="number-label">Customers<br/>Helped</div>
+      </div>
+      <div class="number-item">
+        <div class="number-val"><span class="count-num" data-target="8">0</span></div>
+        <div class="number-label">Specialized<br/>Divisions</div>
+      </div>
+      <div class="number-item">
+        <div class="number-val"><span class="count-num" data-target="3">0</span></div>
+        <div class="number-label">State Markets:<br/>VA · NC · FL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WHY TRUETT ═══════════════════ -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-header reveal">
+      <div class="eyebrow" style="justify-content:center; margin-left:auto; margin-right:auto;">Our Difference</div>
+      <h2>Why the Best Projects Choose Truett</h2>
+      <p>In an industry defined by excuses, we're defined by execution. Here's what sets us apart.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-number">01</div>
+        <div class="why-title">Vertically Integrated</div>
+        <div class="why-body">Every Truett division is in-house. No subcontractor relay race — no miscommunication, no margin inflation. One team, one standard, one point of accountability for every project phase.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-number">02</div>
+        <div class="why-title">Uncompromising Craft</div>
+        <div class="why-body">We use the highest-quality materials and employ craftsmen who take pride in their work. For clients with tighter budgets, we offer smart options — never sacrificing structural integrity or finish quality.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-number">03</div>
+        <div class="why-title">Insurance Claim Expertise</div>
+        <div class="why-body">Built on 2,500+ successful projects and customer relationships, we understand the process inside and out. We advocate for you, document precisely, and deliver results that satisfy adjusters and delight homeowners.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-number">04</div>
+        <div class="why-title">Local Market Intelligence</div>
+        <div class="why-body">25+ years rooted in Northern Virginia means deep knowledge of local codes, climate conditions, supplier relationships, and community standards — advantages no out-of-market firm can replicate.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-number">05</div>
+        <div class="why-title">Scalable to Any Project</div>
+        <div class="why-body">From a single residential roof to large-scale commercial infrastructure and civil development — our resources, fleet, and teams scale to match your ambition without bottlenecks.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-number">06</div>
+        <div class="why-title">Legacy-Minded Leadership</div>
+        <div class="why-body">Thompson Capital Group is built to last. Every decision Jack and the leadership team make is oriented toward long-term trust, reputation, and client outcomes — not short-term gains.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COVERAGE ═════════════════════ -->
+<section id="coverage" class="section" style="background: var(--surface);">
+  <div class="container">
+    <div class="coverage-grid">
+      <div class="coverage-left">
+        <div class="eyebrow reveal">Service Area</div>
+        <h2 class="reveal">Where We Operate</h2>
+        <p class="coverage-body reveal">Proudly headquartered in Marshall, Virginia, Truett Construction serves the entire DMV region with deep local knowledge and proven execution. Our growing footprint now extends through satellite operations in Jacksonville Beach, Florida and Wilmington, North Carolina.</p>
+        <div class="coverage-locations">
+          <div class="location-item reveal">
+            <div class="location-dot"></div>
+            <div>
+              <p>Marshall, Virginia</p>
+              <span>Headquarters — Full DMV coverage</span>
+            </div>
+          </div>
+          <div class="location-item reveal reveal-delay-1">
+            <div class="location-dot"></div>
+            <div>
+              <p>Jacksonville Beach, Florida</p>
+              <span>Satellite operations</span>
+            </div>
+          </div>
+          <div class="location-item reveal reveal-delay-2">
+            <div class="location-dot"></div>
+            <div>
+              <p>Wilmington, North Carolina</p>
+              <span>Satellite operations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="coverage-right reveal">
+        <div class="map-visual">
+          <!-- Stylized east coast map -->
+          <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- State outlines - simplified -->
+            <!-- Virginia -->
+            <path d="M80 80 L280 80 L300 100 L280 130 L260 140 L240 160 L200 170 L180 165 L160 175 L120 160 L80 150 Z"
+                  fill="rgba(201,150,62,0.06)" stroke="rgba(201,150,62,0.25)" stroke-width="1.5"/>
+            <!-- NC -->
+            <path d="M80 160 L180 165 L200 170 L240 170 L260 180 L240 210 L200 215 L160 210 L100 205 L80 190 Z"
+                  fill="rgba(201,150,62,0.04)" stroke="rgba(201,150,62,0.2)" stroke-width="1.5"/>
+            <!-- SC / GA / FL rough -->
+            <path d="M100 205 L200 215 L210 240 L200 270 L180 280 L160 260 L120 250 L100 230 Z"
+                  fill="rgba(201,150,62,0.03)" stroke="rgba(201,150,62,0.15)" stroke-width="1.5"/>
+            <!-- Maryland / DC rough -->
+            <path d="M80 80 L280 80 L300 70 L200 60 L100 65 Z"
+                  fill="rgba(201,150,62,0.04)" stroke="rgba(201,150,62,0.15)" stroke-width="1"/>
+            <!-- HQ dot - Marshall VA -->
+            <circle cx="155" cy="115" r="8" fill="rgba(201,150,62,0.2)" stroke="#C9963E" stroke-width="2"/>
+            <circle cx="155" cy="115" r="3" fill="#C9963E"/>
+            <text x="165" y="112" fill="#C9963E" font-size="10" font-family="Inter, sans-serif" font-weight="600">Marshall, VA</text>
+            <text x="165" y="124" fill="rgba(201,150,62,0.6)" font-size="8" font-family="Inter, sans-serif">Headquarters</text>
+            <!-- Wilmington NC dot -->
+            <circle cx="220" cy="190" r="6" fill="rgba(201,150,62,0.15)" stroke="#C9963E" stroke-width="1.5"/>
+            <circle cx="220" cy="190" r="2.5" fill="#C9963E"/>
+            <text x="228" y="188" fill="#a1a1aa" font-size="9" font-family="Inter, sans-serif">Wilmington, NC</text>
+            <!-- Jacksonville FL dot -->
+            <circle cx="185" cy="248" r="6" fill="rgba(201,150,62,0.15)" stroke="#C9963E" stroke-width="1.5"/>
+            <circle cx="185" cy="248" r="2.5" fill="#C9963E"/>
+            <text x="193" y="246" fill="#a1a1aa" font-size="9" font-family="Inter, sans-serif">Jacksonville, FL</text>
+            <!-- Connection lines -->
+            <line x1="155" y1="115" x2="220" y2="190" stroke="rgba(201,150,62,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="220" y1="190" x2="185" y2="248" stroke="rgba(201,150,62,0.2)" stroke-width="1" stroke-dasharray="4 4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA BAND ══════════════════════ -->
+<section id="cta-band" class="section-sm">
+  <div class="container">
+    <div class="cta-band-inner reveal">
+      <div class="cta-band-text">
+        <h2>Ready to Build Something<br />That <em class="gold">Lasts?</em></h2>
+        <p>Whether you're planning a residential renovation, commercial development, or large-scale infrastructure project — Truett Construction has the team, the tools, and the track record to deliver.</p>
+      </div>
+      <div class="cta-band-actions">
+        <a href="#contact" class="btn btn-gold btn-lg">Start a Project</a>
+        <a href="tel:+15403381511" class="btn btn-outline btn-lg">Call Us Directly</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════════ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="eyebrow reveal">Get In Touch</div>
+        <h2 class="reveal">Let's Build<br />What's Next</h2>
+        <p class="contact-intro reveal">Every great project starts with a conversation. Tell us about your vision and we'll bring the expertise, resources, and commitment to make it real.</p>
+        <div class="contact-details">
+          <div class="contact-item reveal">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <p>Headquarters</p>
+              <span>Marshall, Virginia — Serving DMV, NC & FL</span>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-1">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <p>Phone</p>
+              <span>(540) 338-1511</span>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-2">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <p>Email</p>
+              <span>info@truettconstruction.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-title">Send Us a Message</div>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Jack" required />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Thompson" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="(540) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label>Division of Interest</label>
+            <select>
+              <option value="">Select a division...</option>
+              <option>Truett Roofing</option>
+              <option>Truett Civil</option>
+              <option>Truett General</option>
+              <option>Truett Waterproofing</option>
+              <option>Truett Land & Property Services</option>
+              <option>Truett Demolition</option>
+              <option>Truett Municipal Waste Services</option>
+              <option>Truett Trucking & Logistics</option>
+              <option>Multiple / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell Us About Your Project</label>
+            <textarea placeholder="Describe your project, timeline, and any specific requirements..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold btn-lg form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:0; cursor:default;">
+          <div class="nav-logo-mark">
+            <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="38" height="38" rx="8" fill="rgba(201,150,62,0.08)" stroke="rgba(201,150,62,0.3)" stroke-width="1"/>
+              <path d="M8 10h22M19 10v18" stroke="#C9963E" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="nav-logo-text">
+            <span>Truett Construction</span>
+            <span>Thompson Capital Group</span>
+          </div>
+        </div>
+        <p>The cornerstone of Thompson Capital Group — a vertically integrated construction and infrastructure company building legacies across Virginia, North Carolina, and Florida.</p>
+        <div class="footer-social">
+          <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
+          <div class="social-btn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Divisions</h4>
+        <ul>
+          <li><a href="#">Truett Roofing</a></li>
+          <li><a href="#">Truett Civil</a></li>
+          <li><a href="#">Truett General</a></li>
+          <li><a href="#">Truett Waterproofing</a></li>
+          <li><a href="#">Truett Land & Property</a></li>
+          <li><a href="#">Truett Demolition</a></li>
+          <li><a href="#">Municipal Waste</a></li>
+          <li><a href="#">Trucking & Logistics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#why">Why Truett</a></li>
+          <li><a href="#coverage">Service Areas</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">News & Updates</a></li>
+          <li><a href="#">Thompson Capital Group</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+15403381511">(540) 338-1511</a></li>
+          <li><a href="mailto:info@truettconstruction.com">info@truettconstruction.com</a></li>
+          <li><a href="#">Marshall, Virginia HQ</a></li>
+          <li><a href="#">Jacksonville Beach, FL</a></li>
+          <li><a href="#">Wilmington, NC</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Truett Construction · Thompson Capital Group. All rights reserved.</p>
+      <div class="footer-badge">Accepting New Projects</div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Licenses</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ SCRIPTS ═══════════════════════ -->
+<script>
+  // ── NAV SCROLL EFFECT ──────────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ── MOBILE MENU ────────────────────────────────────
+  const toggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuClose = document.getElementById('menuClose');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  toggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+  menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ── INTERSECTION OBSERVER (REVEAL) ─────────────────
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+        revealObserver.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── ANIMATED COUNTERS ──────────────────────────────
+  function animateCount(el, target, duration = 1600) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.round(start);
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        animateCount(el, parseInt(el.dataset.target));
+        countObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.count-num').forEach(el => countObserver.observe(el));
+
+  // ── FORM SUBMIT HANDLER ────────────────────────────
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#22c55e';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 4000);
+  }
+
+  // ── SMOOTH HOVER PARALLAX ON HERO STATS ───────────
+  document.querySelectorAll('.hero-stat, .hero-badge').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `translateY(-2px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+</script>
+</body>
+</html>
