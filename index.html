@@ -93,9 +93,9 @@
       display: flex; align-items: center; gap: 12px; cursor: pointer;
     }
     .nav-logo-mark {
-      width: 38px; height: 38px; position: relative;
+      width: 44px; height: 44px; position: relative; flex-shrink: 0;
     }
-    .nav-logo-mark svg { width: 100%; height: 100%; }
+    .nav-logo-mark img { width: 100%; height: 100%; object-fit: contain; filter: invert(1); }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
     .nav-logo-text span:first-child {
       font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: 0.02em;
@@ -112,7 +112,7 @@
       font-size: 13px; font-weight: 500; color: var(--muted);
       transition: color var(--transition); letter-spacing: 0.02em;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--gold); }
     .nav-cta {
       display: flex; align-items: center; gap: 16px;
     }
@@ -129,11 +129,18 @@
     .btn-gold {
       background: var(--gold); color: #09090b;
     }
-    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-gold:hover { background: #22c55e; color: #fff; transform: translateY(-1px); }
     .btn-outline {
       background: transparent; color: var(--text); border: 1px solid var(--border);
     }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .nav-phone {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      transition: color var(--transition); letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 6px; white-space: nowrap;
+    }
+    .nav-phone::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+    .nav-phone:hover { color: var(--gold); }
     .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
 
     /* ─── HERO ─────────────────────────────────────────── */
@@ -570,6 +577,7 @@
       .contact-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .nav-cta .btn-ghost { display: none; }
+      .nav-phone { display: none; }
       .nav-mobile-toggle { display: block; color: var(--muted); }
       .nav-mobile-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
       .form-row { grid-template-columns: 1fr; }
@@ -615,6 +623,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
+      <a href="tel:+17033391518" class="nav-phone">(703) 339-1518</a>
       <a href="#divisions" class="btn btn-ghost">Explore Divisions</a>
       <a href="#contact" class="btn btn-gold">Start a Project</a>
       <button class="nav-mobile-toggle" id="menuToggle" aria-label="Menu">
@@ -1119,10 +1128,7 @@
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:0; cursor:default;">
           <div class="nav-logo-mark">
-            <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="38" height="38" rx="8" fill="rgba(201,150,62,0.08)" stroke="rgba(201,150,62,0.3)" stroke-width="1"/>
-              <path d="M8 10h22M19 10v18" stroke="#C9963E" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
+            <img src="Truett Construction.jpg" alt="Truett Construction Logo" />
           </div>
           <div class="nav-logo-text">
             <span>Truett Construction</span>
