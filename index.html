@@ -622,7 +622,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="tel:+17033391518" class="nav-phone">(703) 339-1518</a>
+      <a href="tel:+17033991518" class="nav-phone">(703) 399-1518</a>
       <a href="#divisions" class="btn btn-ghost">Explore Divisions</a>
       <a href="#contact" class="btn btn-gold">Start a Project</a>
       <button class="nav-mobile-toggle" id="menuToggle" aria-label="Menu">
@@ -1026,7 +1026,7 @@
       </div>
       <div class="cta-band-actions">
         <a href="#contact" class="btn btn-gold btn-lg">Start a Project</a>
-        <a href="tel:+17033391518" class="btn btn-outline btn-lg">Call Us Directly</a>
+        <a href="tel:+17033991518" class="btn btn-outline btn-lg">Call Us Directly</a>
       </div>
     </div>
   </div>
@@ -1056,7 +1056,7 @@
             </div>
             <div class="contact-item-text">
               <p>Phone</p>
-              <span>(703) 339-1518</span>
+              <span>(703) 399-1518</span>
             </div>
           </div>
           <div class="contact-item reveal reveal-delay-2">
@@ -1072,28 +1072,28 @@
       </div>
       <div class="contact-form reveal">
         <div class="form-title">Send Us a Message</div>
-        <form id="contactForm" onsubmit="handleSubmit(event)">
+        <form id="contactForm" onsubmit="handleSubmit(event)"><input type="hidden" name="access_key" value="2339e829-52a7-4f42-8751-3a595899441b" />
           <div class="form-row">
             <div class="form-group">
               <label>First Name</label>
-              <input type="text" placeholder="Jack" required />
+              <input type="text" name="first_name" placeholder="First Name" required />
             </div>
             <div class="form-group">
               <label>Last Name</label>
-              <input type="text" placeholder="Thompson" required />
+              <input type="text" name="last_name" placeholder="Last Name" required />
             </div>
           </div>
           <div class="form-group">
             <label>Email Address</label>
-            <input type="email" placeholder="you@company.com" required />
+            <input type="email" name="email" placeholder="you@company.com" required />
           </div>
           <div class="form-group">
             <label>Phone Number</label>
-            <input type="tel" placeholder="(540) 000-0000" />
+            <input type="tel" name="phone" placeholder="(540) 000-0000" />
           </div>
           <div class="form-group">
             <label>Division of Interest</label>
-            <select>
+            <select name="division">
               <option value="">Select a division...</option>
               <option>Truett Roofing</option>
               <option>Truett Civil</option>
@@ -1108,7 +1108,7 @@
           </div>
           <div class="form-group">
             <label>Tell Us About Your Project</label>
-            <textarea placeholder="Describe your project, timeline, and any specific requirements..."></textarea>
+            <textarea name="message" placeholder="Describe your project, timeline, and any specific requirements..."></textarea>
           </div>
           <button type="submit" class="btn btn-gold btn-lg form-submit">Send Message →</button>
         </form>
@@ -1165,7 +1165,7 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="tel:+17033391518">(703) 339-1518</a></li>
+          <li><a href="tel:+17033991518">(703) 399-1518</a></li>
           <li><a href="mailto:info@truettconstruction.com">info@truettconstruction.com</a></li>
           <li><a href="#">Fauquier County, Virginia HQ</a></li>
           <li><a href="#">Myrtle Beach, SC</a></li>
@@ -1250,11 +1250,11 @@
   });
 
   // ── FORM SUBMIT HANDLER ────────────────────────────
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type=submit]');
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#22c55e';
+    const form = e.target; const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending...'; let ok = false; try { const fd = new FormData(form); const resp = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd }); const result = await resp.json(); ok = !!result.success; } catch (err) { ok = false; }
+    btn.textContent = ok ? 'Message Sent ✓' : 'Error - Try Again';
+    btn.style.background = ok ? '#22c55e' : '#ef4444';
     btn.style.color = '#fff';
     btn.disabled = true;
     setTimeout(() => {
@@ -1262,7 +1262,7 @@
       btn.style.background = '';
       btn.style.color = '';
       btn.disabled = false;
-      e.target.reset();
+      if (ok) form.reset();
     }, 4000);
   }
 
